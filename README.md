@@ -16,19 +16,21 @@ kubectl create -f tekton/pipeline/pipeline.yaml
 kubectl create -f tekton/pipelineRun/pipelineRun.yaml
 ```
 
-### Genearte SSH Key
+### GitHub Authentication
+
+#### Genearte SSH Key
 
 ```
 ssh-keygen -t rsa -b 4096 -C "tekton@tekton.dev"
 ```
 
-### Encode SSH Key
+###E Encode SSH Key
 
 ```
 cat ~/.ssh/tekton_rsa | base64 -w 0
 ```
 
-### Create Secret
+#### Create Secret
 
 ```yaml
 apiVersion: v1
@@ -42,7 +44,7 @@ data:
   ssh-privatekey: <base64 encoded private key>
 ```
 
-### Create Service Account
+#### Create Service Account
 
 ```yaml
 apiVersion: v1
@@ -53,7 +55,7 @@ secrets:
   - name: git-ssh-key ### Secret name
 ```
 
-### Add Public Key to GitHub
+#### Add Public Key to GitHub
 
 ```
 cat ~/.ssh/tekton_rsa.pub
@@ -61,20 +63,21 @@ cat ~/.ssh/tekton_rsa.pub
 
 Now go to GitHub -> Settings -> SSH and GPG keys -> New SSH Key and paste the public key.
 
+### DockerHub Authentication
 
-### Create Docker Registry Config
+#### Create Docker Registry Config
 
 ```bash
 mkdir -p ~/.docker && echo '{"auths": {"https://index.docker.io/v1/": {"username": "", "password": "", "email": ""}}}' > ~/.docker/config.json
 ```
 
-### Create Base64 Encoded Docker Registry Secret
+#### Create Base64 Encoded Docker Registry Secret
 
 ```bash
 cat ~/.docker/config.json | base64 -w0
 ``` 
 
-### Create Docker Registry Secret
+#### Create Docker Registry Secret
 
 ```yaml
 
