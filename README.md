@@ -1,4 +1,21 @@
-### Tekton GitHub Trigger
+### Tekton Docker Build Pipeline
+
+### Directory Structure
+```
+└───tekton 
+    ├───pipeline
+    ├───pipelineRun
+    ├───secrets
+    ├───serviceAccount
+    └───tasks
+        ├───list-source.yaml
+        ├───update-manifest.yaml
+.gitignore
+Dockerfile
+index.js
+package.json
+README.md
+```
 
 ### Install Tekton Tasks
 
