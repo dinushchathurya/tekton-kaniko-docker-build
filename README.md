@@ -9,7 +9,7 @@
     ├───serviceAccount
     └───tasks
         ├───list-source.yaml
-        ├───update-manifest.yaml
+        └───tasksupdate-manifest.yaml
 .gitignore
 Dockerfile
 index.js
