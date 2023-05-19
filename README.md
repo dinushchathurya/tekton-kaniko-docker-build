@@ -1,5 +1,14 @@
 ### Tekton Docker Build Pipeline
 
+### Task List
+
+- [x] Clone Private Git Repository
+- [x] Build Docker Image
+- [x] Push Docker Image to Private Docker Registry
+- [x] Update ArgoCD manifest with new image tag
+- [ ] Custom Image Tag Generation
+- [ ] Configure Tektom Triggers
+
 ### Directory Structure
 ```
 └───tekton 
