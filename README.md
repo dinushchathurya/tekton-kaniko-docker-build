@@ -11,15 +11,16 @@ This repo contains all the required scripts to clone source from Private Git rep
 - [ ] Configure Tekton Triggers
 
 ### Directory Structure
+
 ```
-└───tekton 
-    ├───pipeline
-    ├───pipelineRun
-    ├───secrets
-    ├───serviceAccount
-    └───tasks
-        ├───list-source.yaml
-        └───tasksupdate-manifest.yaml
+tekton 
+  ├───pipeline
+  ├───pipelineRun
+  ├───secrets
+  ├───serviceAccount
+  └───tasks
+      ├───list-source.yaml
+      └───tasksupdate-manifest.yaml
 .gitignore
 Dockerfile
 index.js
@@ -29,7 +30,8 @@ README.md
 
 ### Branches
 
-- [x] master (Basic Pipeline with Git Clone, Build and Push) 
+- [x] master (Complete pipeline with triggers)
+- [x] clone-build-push (Basic Pipeline with Git Clone, Build and Push)
 - [x] argo-manifest-update (Update ArgoCD manifest with new image tag and write-back to manifest repo)
 - [x] setup-triggers (Configure Tekton Triggers to trigger pipeline on push to master - completed pipeline)
 
@@ -47,6 +49,9 @@ tkn hub install task kaniko
 
 ### Commands
 
+For the creation of required files like tasks,pipeline,pipelinRun, triggers and etc you can use the `kubectl create -f <file-name>` command.
+
+Examples: 
 ```
 kubectl create -f tekton/tasks/list-source.yaml ### Custom task to list source files
 
@@ -55,7 +60,7 @@ kubectl create -f tekton/tasks/update-manifest.yaml ### Custom task to update Ar
 kubectl create -f tekton/pipeline/pipeline.yaml ### Pipeline definition
 
 kubectl create -f tekton/pipelineRun/pipelineRun.yaml ### PipelineRun definition
-```
+``` 
 
 ### GitHub Authentication
 
@@ -129,9 +134,3 @@ metadata:
 data:
   config.json: <base64 encoded docker config>
 ```
-
-
-
-
-
-  
