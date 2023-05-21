@@ -13,6 +13,7 @@
 - [x] <a href="https://github.com/dinushchathurya/tekton-kaniko-docker-build/tree/master">master</a> (Basic Pipeline with Git Clone, Build and Push) 
 - [x] <a htef="https://github.com/dinushchathurya/tekton-kaniko-docker-build/tree/argo-manifest-update">argo-manifest-update</a> (Update ArgoCD manifest with new image tag and write-back to manifest repo)
 - [x] <a htef="https://github.com/dinushchathurya/tekton-kaniko-docker-build/tree/setup-triggers">setup-triggers</a> (Configure Tekton Triggers to trigger pipeline on push to master branch)
+
 ### Install Tekton Tasks
 
 ```
