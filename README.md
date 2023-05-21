@@ -50,10 +50,6 @@ For the creation of required files like tasks,pipeline,pipelinRun, triggers and 
 
 Examples: 
 ```
-kubectl create -f tekton/tasks/list-source.yaml ### Custom task to list source files
-
-kubectl create -f tekton/tasks/update-manifest.yaml ### Custom task to update ArgoCD manifest
-
 kubectl create -f tekton/pipeline/pipeline.yaml ### Pipeline definition
 
 kubectl create -f tekton/pipelineRun/pipelineRun.yaml ### PipelineRun definition
