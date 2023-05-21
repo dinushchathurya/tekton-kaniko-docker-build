@@ -8,6 +8,11 @@
 - [x] Update ArgoCD manifest with new image tag and write-back to manifest repo
 - [x] Configure Tekton Triggers
 
+### Branches
+
+- [x] master (Basic Pipeline with Git Clone, Build and Push) 
+- [x] argo-manifest-update (Update ArgoCD manifest with new image tag and write-back to manifest repo)
+- [x] setup-triggers (Configure Tekton Triggers to trigger pipeline on push to master branch)
 ### Install Tekton Tasks
 
 ```
