@@ -11,6 +11,7 @@ This repo contains all the required scripts to clone source from Private Git rep
 - [x] Configure Tekton Triggers
 
 ### Directory Structure
+
 ```
 tekton 
     ├───pipeline
@@ -21,7 +22,6 @@ tekton
     └───tasks
         ├───list-source.yaml
         └───tasksupdate-manifest.yaml
-    
 .gitignore
 Dockerfile
 index.js
