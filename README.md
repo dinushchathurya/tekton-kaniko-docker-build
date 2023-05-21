@@ -7,21 +7,21 @@ This repo contains all the required scripts to clone source from Private Git rep
 - [x] Clone Private Git Repository
 - [x] Build Docker Image
 - [x] Push Docker Image to Private Docker Registry
-- [x] Update ArgoCD manifest with new image tag and write-back to manifest repo
+- [x] Update ArgoCD manifest with new image tag
 - [x] Configure Tekton Triggers
 
 ### Directory Structure
+
 ```
 tekton 
-    ├───pipeline
-    ├───pipelineRun
-    ├───triggers
-    ├───secrets
-    ├───serviceAccount
-    └───tasks
-        ├───list-source.yaml
-        └───tasksupdate-manifest.yaml
-    
+  ├───pipeline
+  ├───pipelineRun
+  ├───secrets
+  ├───serviceAccount
+  ├───triggers
+  └───tasks
+      ├───list-source.yaml
+      └───tasksupdate-manifest.yaml
 .gitignore
 Dockerfile
 index.js
@@ -31,14 +31,14 @@ README.md
 
 ### Branches
 
-- [x] master (Basic Pipeline with Git Clone, Build and Push) 
+- [x] master (Complete pipeline with triggers)
+- [x] clone-build-push (Basic Pipeline with Git Clone, Build and Push)
 - [x] argo-manifest-update (Update ArgoCD manifest with new image tag and write-back to manifest repo)
 - [x] setup-triggers (Configure Tekton Triggers to trigger pipeline on push to master - completed pipeline)
 
 ### ArgoCD Manifest
 
 You can find the ArgoCD manifest from the following <a href="https://github.com/dinushchathurya/tekton-manifest">GitHub Repo</a>.
-
 
 ### Install Tekton Tasks
 
@@ -50,11 +50,18 @@ tkn hub install task kaniko
 
 ### Commands
 
-```
-kubectl create -f tekton/pipeline/pipeline.yaml
+For the creation of required files like tasks,pipeline,pipelinRun, triggers and etc you can use the `kubectl create -f <file-name>` command.
 
-kubectl create -f tekton/pipelineRun/pipelineRun.yaml
+Examples: 
 ```
+kubectl create -f tekton/tasks/list-source.yaml ### Custom task to list source files
+
+kubectl create -f tekton/tasks/update-manifest.yaml ### Custom task to update ArgoCD manifest
+
+kubectl create -f tekton/pipeline/pipeline.yaml ### Pipeline definition
+
+kubectl create -f tekton/pipelineRun/pipelineRun.yaml ### PipelineRun definition
+``` 
 
 ### GitHub Authentication
 
@@ -64,7 +71,7 @@ kubectl create -f tekton/pipelineRun/pipelineRun.yaml
 ssh-keygen -t rsa -b 4096 -C "tekton@tekton.dev"
 ```
 
-###E Encode SSH Key
+### Encode SSH Key
 
 ```
 cat ~/.ssh/tekton_rsa | base64 -w 0
@@ -128,7 +135,3 @@ metadata:
 data:
   config.json: <base64 encoded docker config>
 ```
-
-
-
-  
