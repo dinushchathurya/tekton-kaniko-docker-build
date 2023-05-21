@@ -13,6 +13,8 @@ spec:
     type: string
   - name: image-tag
     type: string
+  - name: manifest-repo
+    type: string
   workspaces:
   - name: shared-data
   - name: docker-credentials
@@ -40,4 +42,50 @@ spec:
     params:
     - name: IMAGE
       value: $(params.image-reference):$(tasks.fetch-source.results.commit)
-    
+  - name: fetch-manifest
+    runAfter: ["build-push"]
+    taskRef:
+      name: git-clone
+    workspaces:
+    - name: output
+      workspace: shared-data
+    params:
+    - name: url
+      value: $(params.manifest-repo)
+    - name: deleteExisting
+      value: "true"
+  - name: list-source
+    runAfter: ["fetch-manifest"]
+    taskRef:
+      name: list-source
+    workspaces:
+    - name: source
+      workspace: shared-data
+  - name: update-manifest
+    runAfter: ["list-source"]
+    taskRef:
+      name: kustomize-edit
+    workspaces:
+    - name: source
+      workspace: shared-data
+    params:
+    - name: file-path
+      value: tekton-node-app/overlays/*/*kustomization.yaml
+    - name: new-tag
+      value: $(tasks.fetch-source.results.commit)
+  finally:
+  - name: finaltask
+    params:
+      - name: aggregateTasksStatus
+        value: "$(tasks.status)"
+    taskSpec:
+      params:
+        - name: aggregateTasksStatus
+      steps:
+        - image: ubuntu
+          name: check-task-status
+          script: |
+            if [ $(params.aggregateTasksStatus) == "Failed" ]
+            then
+              echo "Looks like one or more tasks returned failure, continue processing the failure"
+            fi

@@ -1,0 +1,44 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: github-template
+spec:
+  params:
+    - name: gitrevision
+      description: The git revision
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: clone-build-push-run-
+      spec:
+        pipelineRef:
+          name: clone-build-push
+        podTemplate:
+          securityContext:
+            fsGroup: 65532
+        workspaces:
+        - name: shared-data
+          volumeClaimTemplate:
+            spec:
+              accessModes:
+              - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 1Gi
+        - name: docker-credentials
+          secret:
+            secretName: docker-credential
+        params:
+        - name: repo-url
+          value: git@github.com:dinushchathurya/tekton-triggers.git
+        - name: image-reference
+          value: limarktest/tekton-nodejs
+        - name: image-tag
+          value: "$(tt.params.gitrevision)"
+        - name: manifest-repo
+          value: git@github.com:dinushchathurya/tekton-manifest.git
+        - name: manifest-path
+          value: tekton-node-app/overlays/*
+        serviceAccountName: git-serviceaccount
+

@@ -1,0 +1,34 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: kustomize-edit
+spec:
+  workspaces:
+    - name: source
+      description: The source workspace for the manifest repository
+  steps:
+    - name: modify-file
+      image: alpine/git
+      script: |
+        git config --global --add safe.directory /workspace/source
+        cd $(workspaces.source.path)
+
+        # Modify the file using sed command
+        sed -i "s/newTag.*/newTag: $(inputs.params.new-tag)/g" $(inputs.params.file-path)
+        cat $(inputs.params.file-path)
+
+        # Configure Git
+        git config --global user.email "ci@dinush.com"
+        git config --global user.name "devops-bot"
+
+        # Check Git status
+        git status
+
+        # Commit the changes
+        git add $(inputs.params.file-path)
+        git commit -m "feat: Update manifest file with new tag"
+        
+        # Push the changes
+        git push origin HEAD:refs/heads/master
+
+ 
