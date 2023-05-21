@@ -6,8 +6,7 @@
 - [x] Build Docker Image
 - [x] Push Docker Image to Private Docker Registry
 - [x] Update ArgoCD manifest with new image tag and write-back to manifest repo
-- [ ] Custom Image Tag Generation
-- [ ] Configure Tekton Triggers
+- [x] Configure Tekton Triggers
 
 ### Install Tekton Tasks
 
