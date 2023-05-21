@@ -1,4 +1,6 @@
-### Tekton GitHub Trigger
+### Overview
+
+This repo contains all the required scripts to clone source from Private Git repository, build Docker image using Kaniko, push built Docker image to DockerHub and update ArgoCD manifest in separate private Git repo with the new image tag.
 
 ### Task List
 
@@ -12,7 +14,12 @@
 
 - [x] master (Basic Pipeline with Git Clone, Build and Push) 
 - [x] argo-manifest-update (Update ArgoCD manifest with new image tag and write-back to manifest repo)
-- [x] setup-triggers (Configure Tekton Triggers to trigger pipeline on push to master branch)
+- [x] setup-triggers (Configure Tekton Triggers to trigger pipeline on push to master - completed pipeline)
+
+### ArgoCD Manifest
+
+You can find the ArgoCD manifest from the following <a href="https://github.com/dinushchathurya/tekton-manifest">GitHub Repo</a>.
+
 
 ### Install Tekton Tasks
 
@@ -102,8 +109,6 @@ metadata:
 data:
   config.json: <base64 encoded docker config>
 ```
-
-
 
 
 
