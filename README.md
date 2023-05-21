@@ -10,6 +10,23 @@ This repo contains all the required scripts to clone source from Private Git rep
 - [x] Update ArgoCD manifest with new image tag and write-back to manifest repo
 - [x] Configure Tekton Triggers
 
+### Directory Structure
+```
+└───tekton 
+    ├───pipeline
+    ├───pipelineRun
+    ├───secrets
+    ├───serviceAccount
+    └───tasks
+        ├───list-source.yaml
+        └───tasksupdate-manifest.yaml
+.gitignore
+Dockerfile
+index.js
+package.json
+README.md
+```
+
 ### Branches
 
 - [x] master (Basic Pipeline with Git Clone, Build and Push) 
