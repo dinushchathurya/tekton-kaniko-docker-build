@@ -1,0 +1,17 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: EventListener
+metadata:
+  name: github-listener
+  annotations:
+    tekton.dev/payload-validation: "false"
+    tekton.dev/disable-ssl-verify: "true"
+spec:
+  serviceAccountName: tekton-triggers-sa
+  triggers:
+    - name: github-listener
+      bindings:
+        - ref: github-binding # TriggerBinding
+      template:
+        ref: github-template # TriggerTemplate
+
+
