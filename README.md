@@ -7,19 +7,17 @@ This repo contains all the required scripts to clone source from Private Git rep
 - [x] Clone Private Git Repository
 - [x] Build Docker Image
 - [x] Push Docker Image to Private Docker Registry
-- [x] Update ArgoCD manifest with new image tag
-- [x] Configure Tekton Triggers
+- [ ] Update ArgoCD manifest with new image tag
+- [ ] Configure Tekton Triggers
 
 ### Directory Structure
+
 ```
-└───tekton 
-    ├───pipeline
-    ├───pipelineRun
-    ├───secrets
-    ├───serviceAccount
-    └───tasks
-        ├───list-source.yaml
-        └───tasksupdate-manifest.yaml
+tekton 
+  ├───pipeline
+  ├───pipelineRun
+  ├───secrets
+  └───serviceAccount
 .gitignore
 Dockerfile
 index.js
