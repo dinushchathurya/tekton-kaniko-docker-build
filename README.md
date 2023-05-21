@@ -14,14 +14,14 @@ This repo contains all the required scripts to clone source from Private Git rep
 
 ```
 tekton 
-  ├───pipeline
-  ├───pipelineRun
-  ├───secrets
-  ├───serviceAccount
-  ├───triggers
-  └───tasks
-      ├───list-source.yaml
-      └───tasksupdate-manifest.yaml
+    ├───pipeline
+    ├───pipelineRun
+    ├───secrets
+    ├───serviceAccount
+    ├───triggers
+    └───tasks
+        ├───list-source.yaml
+        └───tasksupdate-manifest.yaml
 .gitignore
 Dockerfile
 index.js
