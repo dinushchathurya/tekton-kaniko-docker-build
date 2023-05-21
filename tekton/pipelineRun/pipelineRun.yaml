@@ -27,7 +27,8 @@ spec:
     value: limarktest/tekton-nodejs
   - name: image-tag
     value: v1.0.0
+  - name: manifest-repo
+    value: git@github.com:dinushchathurya/tekton-manifest.git
+  - name: manifest-path
+    value: tekton-node-app/overlays/*
   serviceAccountName: git-serviceaccount
-
-
-  

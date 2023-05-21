@@ -1,0 +1,8 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerBinding
+metadata:
+  name: github-binding
+spec:
+  params:
+    - name: gitrevision
+      value: $(body.head_commit.id)

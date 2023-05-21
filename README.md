@@ -11,10 +11,12 @@ This repo contains all the required scripts to clone source from Private Git rep
 - [x] Configure Tekton Triggers
 
 ### Directory Structure
+
 ```
-└───tekton 
+tekton 
     ├───pipeline
     ├───pipelineRun
+    ├───triggers
     ├───secrets
     ├───serviceAccount
     └───tasks
